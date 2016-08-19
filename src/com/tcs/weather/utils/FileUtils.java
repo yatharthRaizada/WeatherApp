@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.tcs.weather.utils;
 
 import com.tcs.weather.beans.CityBean;
@@ -16,11 +12,15 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
- *
- * @author Nileshwari
+ *This class has some methods to perform file related operations
+ * @author Yatharth Raizada
  */
 public class FileUtils {
 
+    /**
+     * This method is used to read a csv file in source folder and set it in City bean
+     * @return list_of_city_bean
+     */
     public ArrayList<CityBean> readCSVFile() {
         ArrayList<CityBean> listCityBean = new ArrayList<CityBean>();
         BufferedReader br = null;
@@ -29,6 +29,7 @@ public class FileUtils {
         InputStream inputStream = null;
         CityBean objCityBean = null;
 
+        //read csv file and load it's content in city bean list
         try {
             inputStream = getClass().getClassLoader().getResourceAsStream("CityInfo.csv");
 
@@ -52,15 +53,15 @@ public class FileUtils {
             }
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Config CSV file not found. Please keep csv file in src folder");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Ërror in reading Config CSV file. Please keep csv file in src folder");
         } finally {
             if (br != null) {
                 try {
                     br.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println("Error in closing bufferred reader.");
                 }
             }
         }
