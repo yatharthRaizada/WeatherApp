@@ -12,28 +12,41 @@ import com.tcs.weather.utils.WeatherConditionUtils;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * This class has main method which is executed first.
+ *
+ * @author Yatharth Raizada
+ */
 public class WeatherAppMain {
 
     /**
+     * This method is executed first. It calls a method to read CSV file to load
+     * city info. The city info like weather condition, pressure, humidity and
+     * temperature are further calculated
+     *
      * @param args
      */
     public static void main(String[] args) {
 
+        //declarations and initialization
         ArrayList<CityBean> listCityBean = new ArrayList<CityBean>();
         ArrayList<Date> listRandomDate = new ArrayList<Date>();
         TempertureUtils objTemperatureUtils = new TempertureUtils();
         PressureUtils objPressureUtils = new PressureUtils();
         HumidityUtils objHumidityUtils = new HumidityUtils();
         WeatherConditionUtils objWeatherConditionUtils = new WeatherConditionUtils();
-
         DateUtils objDateUtils = new DateUtils();
-
         CityWeatherBean objCityWeatherBean = null;
         ArrayList<CityWeatherBean> listCityWeatherBean = new ArrayList<CityWeatherBean>();
         FileUtils objFileUtils = new FileUtils();
+
+        //call method to load city information into the list of bean of City class
         listCityBean = objFileUtils.readCSVFile();
+
+        //call method to get random dates for each city
         listRandomDate = objDateUtils.getListRandomDates(listCityBean.size());
 
+        //call methods to calculate all the information for a city and load it into Weathe Class bean
         if (listCityBean.size() > 0) {
             for (int i = 0; i < listCityBean.size(); i++) {
                 objCityWeatherBean = new CityWeatherBean();
@@ -56,6 +69,7 @@ public class WeatherAppMain {
             System.out.println("Error occurred in parsing csv file. Exiting.");
         }
 
+        //display the results
         if (listCityWeatherBean.size() > 0) {
             for (int i = 0; i < listCityWeatherBean.size(); i++) {
                 objCityWeatherBean = listCityWeatherBean.get(i);
@@ -67,7 +81,7 @@ public class WeatherAppMain {
                 System.out.print(objCityWeatherBean.getWeatherCondition() + WeatherAppConstants.OUTPUT_DELIMITER);
                 System.out.print(String.format("%.2f", objCityWeatherBean.getTemperatureInCelsius()) + WeatherAppConstants.OUTPUT_DELIMITER);
                 System.out.print(String.format("%.2f", objCityWeatherBean.getPressureInHPA()) + WeatherAppConstants.OUTPUT_DELIMITER);
-                System.out.println(String.format("%.2f", objCityWeatherBean.getRelativeHumidityInPercentage()) );
+                System.out.println(String.format("%.2f", objCityWeatherBean.getRelativeHumidityInPercentage()));
 
             }
 

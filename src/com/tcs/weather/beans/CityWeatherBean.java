@@ -2,6 +2,11 @@ package com.tcs.weather.beans;
 
 import java.util.Date;
 
+/**
+ * This class is City Weather Bean class
+ *
+ * @author Yatharth Raizada
+ */
 public class CityWeatherBean {
 
     private CityBean objCityBean;
