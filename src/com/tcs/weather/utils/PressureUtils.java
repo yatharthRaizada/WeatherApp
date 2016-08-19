@@ -1,20 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.tcs.weather.utils;
 
 import com.tcs.weather.constants.WeatherAppConstants;
 import static java.lang.Math.pow;
 
 /**
- *
+ * This class contains method to calculate the pressure of a place
  * @author Yatharth Raizada
  */
 public class PressureUtils {
 
+    /**
+     * This method is used to calculate the pressure of a place based on the elevation of the city
+     * @param elevation
+     * @return pressure_in_hpa
+     */
     public Double getPressure(double elevation) {
+        
+        //calculate pressure based on a regression equation
         double factorA = (WeatherAppConstants.RATE_OF_TEMPERATURE_DECREASE_PER_METRE * elevation) / WeatherAppConstants.SEA_LEVEL_STANDARD_TEMPERATURE_IN_K;
         factorA = 1 - factorA;
 

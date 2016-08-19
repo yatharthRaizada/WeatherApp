@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.tcs.weather.utils;
 
 import com.tcs.weather.beans.CityBean;
@@ -10,11 +5,20 @@ import com.tcs.weather.constants.WeatherAppConstants;
 import java.util.Date;
 
 /**
+ * This class contains method to calculate the temperature of a place
  *
  * @author Yatharth Raizada
  */
 public class TempertureUtils {
 
+    /**
+     * This method is used to calculate temperature based on a regression
+     * equation
+     *
+     * @param objCityBean
+     * @param localTime
+     * @return temperature_in_celsius
+     */
     public Double getTemperature(CityBean objCityBean, Date localTime) {
 
         Double latitude = objCityBean.getLatitude();
@@ -41,6 +45,14 @@ public class TempertureUtils {
 
         return temperature;
     }
+
+    /**
+     * This method is used to return coefficient_factor based on
+     * the month
+     *
+     * @param month
+     * @return coefficient_factor
+     */
 
     private double getCoefficient(int month) {
         switch (month) {
@@ -74,6 +86,11 @@ public class TempertureUtils {
 
     }
 
+    /**
+     * This method is used to convert temperature in fahrenheit to celsius
+     * @param tempLatitudeF
+     * @return temperature_in_celsius
+     */
     private double getCelsiusFromFahreheit(double tempLatitudeF) {
         return ((tempLatitudeF - 32) * 5) / 9;
     }
