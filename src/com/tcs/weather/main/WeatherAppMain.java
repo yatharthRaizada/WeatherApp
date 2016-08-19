@@ -67,7 +67,7 @@ public class WeatherAppMain {
                 System.out.print(objCityWeatherBean.getWeatherCondition() + WeatherAppConstants.OUTPUT_DELIMITER);
                 System.out.print(String.format("%.2f", objCityWeatherBean.getTemperatureInCelsius()) + WeatherAppConstants.OUTPUT_DELIMITER);
                 System.out.print(String.format("%.2f", objCityWeatherBean.getPressureInHPA()) + WeatherAppConstants.OUTPUT_DELIMITER);
-                System.out.println(String.format("%.2f", objCityWeatherBean.getRelativeHumidityInPercentage()) + WeatherAppConstants.OUTPUT_DELIMITER);
+                System.out.println(String.format("%.2f", objCityWeatherBean.getRelativeHumidityInPercentage()) );
 
             }
 
