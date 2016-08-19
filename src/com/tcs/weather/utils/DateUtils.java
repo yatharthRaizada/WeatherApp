@@ -6,13 +6,20 @@ import java.util.*;
 
 /**
  *
- * @author yatharth raizada
+ * @author yatharth raizada This class has some methods to perform functions
+ * related to date and time
  */
 public class DateUtils {
 
+    /**
+     * This method is used to generate any random date and time for the last
+     * year
+     *
+     * @return date (random date)
+     */
     public Date generate() {
-        Calendar cal = Calendar.getInstance();
 
+        Calendar cal = Calendar.getInstance();
         cal.add(Calendar.YEAR, -1); // today minus one year
         Date dMin = cal.getTime();
         cal.add(Calendar.YEAR, 1); // today 
@@ -33,6 +40,13 @@ public class DateUtils {
         calRandom.add(Calendar.DATE, new Random().nextInt((int) dayDiff));
         return calRandom.getTime();
     }
+    
+    /**
+     * This method is used to generate n number of random dates using the above method
+     * n is the number of cities found in config file
+     * @param numberOfDates
+     * @return list_of_random_dates
+     */
 
     public ArrayList<Date> getListRandomDates(int numberOfDates) {
         ArrayList<Date> listRandomDates = new ArrayList<Date>();
@@ -44,6 +58,12 @@ public class DateUtils {
         }
         return listRandomDates;
     }
+    
+    /**
+     * This method is used to format date object in ISO 8601 format
+     * @param inputDate
+     * @return string_date_in_iso_8601_format
+     */
 
     public String getISO8601Date(Date inputDate) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
