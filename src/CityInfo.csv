@@ -1,0 +1,11 @@
+CityName,Latitude,Longitude,Elevation,IsCoastal
+Mumbai,19.07,72.87,14,true
+Srinagar,34.08,74.79,1585,false
+Agra,27.17,78,171,false
+Chennai,13.08,80.27,6.7,true
+Kolkata,22.57,88.36,9.1,false
+Indore,22.71,75.85,553,false
+Jaipur,26.91,75.78,431,false
+Bangalore,12.97,77.59,920,false
+Ahmedabad,23.02,72.57,53,false
+Kodaikanal,10.23,77.48,2133,false
