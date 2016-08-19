@@ -9,7 +9,7 @@ import com.tcs.weather.constants.WeatherAppConstants;
 
 /**
  *
- * @author Nileshwari
+ * @author Yatharth Raizada
  */
 public class WeatherConditionUtils {
 
