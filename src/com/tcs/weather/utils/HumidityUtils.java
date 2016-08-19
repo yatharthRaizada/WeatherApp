@@ -1,35 +1,42 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.tcs.weather.utils;
 
 import com.tcs.weather.beans.CityBean;
 import com.tcs.weather.constants.WeatherAppConstants;
-import static java.lang.Math.exp;
 import java.util.Date;
 
 /**
+ * This class contains method to calculate the humidity of a place
  *
  * @author Yatharth Raizada
  */
 public class HumidityUtils {
 
+    /**
+     *
+     * @param objCityBean (Bean of city for which relative humidity has to be
+     * calculated)
+     * @param temperatureInCelsius (temperature calculated earlier)
+     * @param localTime (time at which relative humidity has to be calculated
+     * @return calculated_humidity
+     */
     public Double getHumidity(CityBean objCityBean, Double temperatureInCelsius, Date localTime) {
         int month = localTime.getMonth();
+        Double elevation = objCityBean.getElevation();
+        //get factor for multiplication to deduce dew point based on temperature and the month
+
         Double factorDewPoint = getfactorDewPoint(month);
         Double dewPoint = temperatureInCelsius * factorDewPoint;
-        Double elevation = objCityBean.getElevation();
 
-        //calculate dewPoint based on elevation
+        //factor dewPoint based on elevation
         dewPoint = dewPoint + (WeatherAppConstants.RATE_OF_HUMIDITY_DECREASE_PER_METRE * elevation);
 
         //calculate and apply coastal dewPoint normalization
         if (objCityBean.isIsCoastal()) {
+            //summer
             if (month > 3 && month < 8) {
                 dewPoint = dewPoint * WeatherAppConstants.COASTAL_HUMIDITY_NORMALIZATION_FACTOR_SUMMER;
-            } else if ((month > 9 && month < 12) || month == 0 || month == 1) {
+            } //winter
+            else if ((month > 9 && month < 12) || month == 0 || month == 1) {
                 dewPoint = dewPoint * WeatherAppConstants.COASTAL_HUMIDITY_NORMALIZATION_FACTOR_WINTER;
             }
 
@@ -40,9 +47,16 @@ public class HumidityUtils {
         if (relativeHumidity > 100.0) {
             return 100.0;
         }
+        
+        //return result
         return relativeHumidity;
     }
 
+    /**
+     * This method is used to return dew_point_multiplication_factor based on the month
+     * @param month
+     * @return dew_point_multiplication_factor
+     */
     private double getfactorDewPoint(int month) {
         switch (month) {
             case 0:
