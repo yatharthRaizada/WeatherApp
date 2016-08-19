@@ -1,5 +1,10 @@
 package com.tcs.weather.beans;
 
+/**
+ * 
+ * This class is City Bean class
+ * @author Yatharth Raizada
+ */
 public class CityBean {
 
     private String CityName;
