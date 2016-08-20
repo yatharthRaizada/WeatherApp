@@ -100,6 +100,7 @@ public class WeatherConditionUtilsTest {
             }
 
         } else {
+            
             System.out.println("Error occurred in parsing csv file. Exiting.");
         }
     }
