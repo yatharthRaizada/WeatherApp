@@ -16,39 +16,41 @@ import static org.junit.Assert.*;
  *
  * @author Yatharth Raizada
  */
-public class TempertureUtilsTest {
-
-    public TempertureUtilsTest() {
+public class WeatherConditionUtilsTest {
+    
+    public WeatherConditionUtilsTest() {
     }
-
+    
     @BeforeClass
     public static void setUpClass() {
     }
-
+    
     @AfterClass
     public static void tearDownClass() {
     }
-
+    
     @Before
     public void setUp() {
     }
-
+    
     @After
     public void tearDown() {
     }
 
     /**
-     * Test of getTemperature method, of class TempertureUtils.
+     * Test of getWeatherCondition method, of class WeatherConditionUtils.
      */
     @Test
-    public void testGetTemperature() {
-        System.out.println("getTemperature");
-
-        //declarations and initializations
+    public void testGetWeatherCondition() {
+        System.out.println("getWeatherCondition");
+         //declarations and initializations
         ArrayList<CityBean> listCityBean = new ArrayList<CityBean>();
         ArrayList<Date> listRandomDate = new ArrayList<Date>();
 
         TempertureUtils objTemperatureUtils = new TempertureUtils();
+        HumidityUtils objHumidityUtils = new HumidityUtils();
+        WeatherConditionUtils objWeatherConditionUtils = new WeatherConditionUtils();
+        
 
         DateUtils objDateUtils = new DateUtils();
         CityWeatherBean objCityWeatherBean = null;
@@ -70,6 +72,10 @@ public class TempertureUtilsTest {
                 objCityWeatherBean.setLocalTime(listRandomDate.get(i));
                 //get temperature
                 objCityWeatherBean.setTemperatureInCelsius(objTemperatureUtils.getTemperature(listCityBean.get(i), objCityWeatherBean.getLocalTime()));
+                //get humidity
+                objCityWeatherBean.setRelativeHumidityInPercentage(objHumidityUtils.getHumidity(listCityBean.get(i), objCityWeatherBean.getTemperatureInCelsius(), objCityWeatherBean.getLocalTime()));
+                //get condition
+                objCityWeatherBean.setWeatherCondition(objWeatherConditionUtils.getWeatherCondition(objCityWeatherBean.getTemperatureInCelsius(), objCityWeatherBean.getRelativeHumidityInPercentage()));
 
                 listCityWeatherBean.add(objCityWeatherBean);
             }
@@ -82,21 +88,20 @@ public class TempertureUtilsTest {
         if (listCityWeatherBean.size() > 0) {
             for (int i = 0; i < listCityWeatherBean.size(); i++) {
                 objCityWeatherBean = listCityWeatherBean.get(i);
-                System.out.println("City: " + objCityWeatherBean.getObjCityBean().getCityName() + ", Temperature: " + objCityWeatherBean.getTemperatureInCelsius());
-                System.out.println("Checking if temperature returned is null");
-                assertNotNull(objCityWeatherBean.getTemperatureInCelsius());
-                System.out.println("Temperature returned is not null");
-                System.out.println("Checking if temperature returned is unrealistic");
-                assertFalse(objCityWeatherBean.getTemperatureInCelsius() <= -20);
-                assertFalse(objCityWeatherBean.getTemperatureInCelsius() > 60);
-                System.out.println("Temperature returned is realistic");
-                System.out.println("All tests passed in getTemperature method. Exiting now.");
+                System.out.println("City: " + objCityWeatherBean.getObjCityBean().getCityName() + ", Condition: " + objCityWeatherBean.getWeatherCondition());
+                System.out.println("Checking if weatherCondition returned is null");
+                assertNotNull(objCityWeatherBean.getWeatherCondition());
+                System.out.println("WeatherCondition returned is not null");
+                System.out.println("Checking if WeatherCondition returned is something other than sunny, rain and snow");
+                assertTrue(objCityWeatherBean.getWeatherCondition().equals("Sunny")||objCityWeatherBean.getWeatherCondition().equals("Rain")||objCityWeatherBean.getWeatherCondition().equals("Snow"));
+                assertFalse(objCityWeatherBean.getTemperatureInCelsius()> 60);
+                System.out.println("WeatherCondition returned is correct");
+                System.out.println("All tests passed in getWeatherCondition method. Exiting now.");
             }
 
         } else {
             System.out.println("Error occurred in parsing csv file. Exiting.");
         }
-
     }
-
+    
 }
