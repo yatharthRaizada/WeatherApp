@@ -6,6 +6,7 @@ import com.tcs.weather.beans.CityBean;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -34,6 +35,7 @@ public class FileUtils {
             inputStream = getClass().getClassLoader().getResourceAsStream("CityInfo.csv");
 
             br = new BufferedReader(new InputStreamReader(inputStream));
+            //br= new BufferedReader(new FileReader("CityInfo.csv"));
             int i = 0;
             while ((line = br.readLine()) != null) {
                 if (i != 0) {
