@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.tcs.weather.utils;
 
 import java.util.ArrayList;
@@ -16,7 +11,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Nileshwari
+ * @author Yatharth Raizada
  */
 public class DateUtilsTest {
 
@@ -47,7 +42,10 @@ public class DateUtilsTest {
         System.out.println("generate");
         DateUtils instance = new DateUtils();
         Date result = instance.generate();
+        System.out.println("Checking if result is null.");
         assertNotNull(result);
+        System.out.println("Result is not null.");
+        System.out.println("All tests passed in generate method. Exiting now.");
     }
 
     /**
@@ -58,12 +56,18 @@ public class DateUtilsTest {
         System.out.println("getListRandomDates");
         int numberOfDates = 10;
         DateUtils instance = new DateUtils();
-        ArrayList<Date> expResult = null;
         ArrayList<Date> result = instance.getListRandomDates(numberOfDates);
+        System.out.println("Checking if size of list is same as numberOfDates");
         assertEquals(numberOfDates, result.size());
+        System.out.println("Size of list is same as numberOfDates");
+        System.out.println("Checking if each of the element is not null");
+        
         for (int i = 0; i < result.size(); i++) {
             assertNotNull(result.get(i));
         }
+        System.out.println("Each of the element is not null");
+        
+        System.out.println("All tests passed in getListRandomDates method. Exiting now.");
 
     }
 
@@ -73,11 +77,13 @@ public class DateUtilsTest {
     @Test
     public void testGetISO8601Date() {
         System.out.println("getISO8601Date");
-        Date inputDate = null;
+        
         DateUtils instance = new DateUtils();
-        //String expResult = "";
         String result = instance.getISO8601Date(instance.generate());
+        System.out.println("Checking if result is null");
         assertNotNull(result);
+        System.out.println("Result is not null");
+        System.out.println("All tests passed in getISO8601Date method. Exiting now.");
 
     }
 
