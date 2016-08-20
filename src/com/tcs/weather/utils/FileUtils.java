@@ -32,10 +32,10 @@ public class FileUtils {
 
         //read csv file and load it's content in city bean list
         try {
-            inputStream = getClass().getClassLoader().getResourceAsStream("CityInfo.csv");
+            //inputStream = getClass().getClassLoader().getResourceAsStream("CityInfo.csv");
 
-            br = new BufferedReader(new InputStreamReader(inputStream));
-            //br= new BufferedReader(new FileReader("CityInfo.csv"));
+            //br = new BufferedReader(new InputStreamReader(inputStream));
+            br= new BufferedReader(new FileReader("CityInfo.csv"));
             int i = 0;
             while ((line = br.readLine()) != null) {
                 if (i != 0) {
